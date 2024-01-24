@@ -4,6 +4,14 @@ import useMovies from './hooks/useMovies'
 function App () {
   const { movies } = useMovies()
 
+  const globalStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    placeItems: 'center',
+    gap: '10px',
+    width: '100%'
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const query = e.target.query.value.trim()
@@ -12,9 +20,9 @@ function App () {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', placeItems: 'center', gap: '10px' }}>
+    <div style={globalStyles}>
       <header>
-        <h1>Movies Search Tool</h1>
+        <h1 style={{ textAlign: 'center' }}>Movies Search Tool</h1>
         <form
           onSubmit={handleSubmit}
           className='form'
@@ -29,12 +37,7 @@ function App () {
           <button type='submit'>Search</button>
         </form>
       </header>
-      <main
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, 1fr)'
-        }}
-      >
+      <main style={{ width: '90vw' }}>
         <Movies movies={movies} />
       </main>
     </div>
